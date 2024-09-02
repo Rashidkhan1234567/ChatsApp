@@ -5,10 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import img from "../assets/images-removebg-preview.png";
 import {
   auth,
+  db,
+  doc,
+   setDoc,
   createUserWithEmailAndPassword,
 } from "../Firebase/firebase.config";
 
 function Signup() {
+ 
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -95,8 +99,16 @@ function Signup() {
       return;
     } else {
       await createUserWithEmailAndPassword(auth, email, password)
-        .then((response) => {
+        .then(async(response) => {
           const uid = response.user.uid;
+          const userDetails = {
+            name,
+            email,
+            uid,
+            createdAt: new Date().toDateString(),
+            loginAt: new Date().toDateString(),
+          }
+        await setDoc(doc(db,email,uid), userDetails);
           localStorage.setItem("email" , email)
           Swal.fire({
             position: "top-center",

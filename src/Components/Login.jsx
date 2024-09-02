@@ -2,7 +2,7 @@
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import "../Style/Login.css";
-import { auth, signInWithEmailAndPassword } from "../Firebase/firebase.config";
+import { auth, signInWithEmailAndPassword ,setDoc ,db,doc} from "../Firebase/firebase.config";
 
 
 function Login() {
@@ -67,8 +67,14 @@ function Login() {
       return;
     } else {
       signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
+        .then(async(userCredential) => {
+          const uid = userCredential.user.uid;
+          const userDetails = {
+            uid,
+            createdAt: new Date().toDateString(),
+            loginAt: new Date().toDateString(),
+          }
+        await setDoc(doc(db,email,uid), userDetails);
           localStorage.setItem("email" , email)
           Swal.fire({
             icon: "success",
