@@ -6,6 +6,7 @@ function Loading() {
 
     const navigate = useNavigate();
     const local = localStorage.getItem("email")
+
     useEffect(()=>{
 
         if(local === null){
