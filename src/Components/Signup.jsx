@@ -101,15 +101,15 @@ function Signup() {
       await createUserWithEmailAndPassword(auth, email, password)
         .then(async(response) => {
           const uid = response.user.uid;
-          const userDetails = {
+          const userData = {
             name,
             email,
             uid,
             createdAt: new Date().toDateString(),
             loginAt: new Date().toDateString(),
           }
-        await setDoc(doc(db,email,uid), userDetails);
-          localStorage.setItem("email" , email)
+        await setDoc(doc(db,"Users",uid), userData);
+          localStorage.setItem("UID" , uid)
           Swal.fire({
             position: "top-center",
             icon: "success",

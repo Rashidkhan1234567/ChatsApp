@@ -6,6 +6,7 @@ import Signup from './Components/Signup';
 import { createBrowserRouter , RouterProvider } from 'react-router-dom';
 import Home from "./Components/Home"
 import Loading from './Components/Loading';
+import Chat from './Components/Chats';
 
 function App() {
   const router = createBrowserRouter([
@@ -24,6 +25,10 @@ function App() {
     {
       path: "/Signup",
       element: <Signup/>,
+    },
+    {
+      path: "/Chat",
+      element: <Chat/>,
     },
   ]);
   // const [count, setCount] = useState(0)

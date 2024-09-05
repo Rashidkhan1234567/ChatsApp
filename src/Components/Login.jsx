@@ -69,13 +69,13 @@ function Login() {
       signInWithEmailAndPassword(auth, email, password)
         .then(async(userCredential) => {
           const uid = userCredential.user.uid;
-          const userDetails = {
+          const userData = {
             uid,
             createdAt: new Date().toDateString(),
             loginAt: new Date().toDateString(),
           }
-        await setDoc(doc(db,email,uid), userDetails);
-          localStorage.setItem("email" , email)
+        await setDoc(doc(db,"User",uid), userData);
+          localStorage.setItem("UID" , uid)
           Swal.fire({
             icon: "success",
             title: "User Login Successfully!",

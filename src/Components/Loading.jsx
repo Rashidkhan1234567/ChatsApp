@@ -5,7 +5,7 @@ import "../Style/Loading.css";
 function Loading() {
 
     const navigate = useNavigate();
-    const local = localStorage.getItem("email")
+    const local = localStorage.getItem("UID")
 
     useEffect(()=>{
 
