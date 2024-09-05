@@ -49,7 +49,7 @@ function UsersID() {
           <div className="side-2">
             <button
               type="button"
-              onClick={() => navigate("/Chat", { state: {...user , myUid} })}
+              onClick={() => navigate("/Messages", { state: {...user , myUid} })}
               className="btn cursor-pointer bg-slate-400 text-lg w-[max-content] px-5 h-[8vh] rounded-lg hover:text-black hover:bg-slate-500"
             >
               Message

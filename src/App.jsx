@@ -6,13 +6,20 @@ import Signup from './Components/Signup';
 import { createBrowserRouter , RouterProvider } from 'react-router-dom';
 import Home from "./Components/Home"
 import Loading from './Components/Loading';
-import Chat from './Components/Chats';
+import Error from './Components/Error';
+import Messages from './Components/Messages';
+import Chats from './Components/Chats.jsx';
+
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Loading/>,
+    },
+    {
+      path: "*",
+      element: <Error/>,
     },
     {
       path: "/Home",
@@ -27,8 +34,12 @@ function App() {
       element: <Signup/>,
     },
     {
-      path: "/Chat",
-      element: <Chat/>,
+      path: "/Chats",
+      element: <Chats/>,
+    },
+    {
+      path: "/Messages",
+      element: <Messages/>,
     },
   ]);
   // const [count, setCount] = useState(0)
