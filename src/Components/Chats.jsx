@@ -26,8 +26,13 @@ function UsersID() {
     userdata.forEach((item) => {
       userList.push(item.data());
     });
-    // if(userList.includes(uid))
-    console.log(userList)
+    userList.map(item => {
+      if(item.uid.includes(uid)){
+        let data = userList.indexOf(item)
+        delete userList[data]
+      }
+
+    })
     setUser(userList);
     setCon(false);
   };
