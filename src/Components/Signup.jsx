@@ -1,6 +1,6 @@
 import "../Style/Login.css";
 import Swal from "sweetalert2";
-import { react, useState } from "react";
+import { react, useState , useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import img from "../assets/images-removebg-preview.png";
 import {
@@ -12,13 +12,14 @@ import {
 } from "../Firebase/firebase.config";
 
 function Signup() {
- 
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setloading] = useState(false);
-
+  useEffect(()=>{
+    document.querySelector("title").innerHTML = "𝗖𝗵𝗮𝘁𝘀𝗔𝗽𝗽 | 𝗦𝗶𝗴𝗻𝗨𝗽"
+  })
   async function handleSignup(e) {
     e.preventDefault();
     setloading(true);

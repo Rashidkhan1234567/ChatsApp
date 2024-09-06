@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 
 const Error404 = () => {
+  document.querySelector("title").innerHTML = "𝗖𝗵𝗮𝘁𝘀𝗔𝗽𝗽 |  𝗘𝗿𝗿𝗼𝗿 404"
   return (
     <div className="errorPage">
       <div className="errorContent">

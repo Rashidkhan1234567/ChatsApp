@@ -1,4 +1,4 @@
-    import { react, useState } from "react";
+import { react, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import "../Style/Login.css";
@@ -6,10 +6,17 @@ import { auth, signInWithEmailAndPassword ,setDoc ,db,doc} from "../Firebase/fir
 
 
 function Login() {
-    const navigate = useNavigate();
+  
+   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password , setPassword] = useState("");
   const [loading, setloading] = useState(false);
+
+  
+  useEffect(() => {
+    document.querySelector("title").innerHTML = "𝗖𝗵𝗮𝘁𝘀𝗔𝗽𝗽 |  𝗟𝗼𝗴𝗶𝗻"
+  }, []);
+
 
   function handleLogin(e) {
     e.preventDefault();

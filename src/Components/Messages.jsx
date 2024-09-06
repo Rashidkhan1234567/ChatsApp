@@ -17,11 +17,15 @@ function Messages() {
   const [messages, setMessage] = useState([]);
   const [chatList, setChatList] = useState([]);
   const param = useLocation();
-  console.log(param.state);
+  let name_1  = param.state.name.slice(0,1).toUpperCase()
+  let full  = name_1 + param.state.name.slice(1).toLowerCase()
+  
+  
   
   const [admin, setAdmin1] = useState("");
 
   useEffect(() => {
+    document.querySelector("title").innerHTML = "𝗖𝗵𝗮𝘁𝘀𝗔𝗽𝗽 |  𝗖𝗵𝗮𝘁 𝗪𝗶𝘁𝗵" + " " + full
     getName();
     const q = query(
       collection(db, "Chat"),
@@ -33,8 +37,8 @@ function Messages() {
       docSnap.forEach((item) => {
         list.push(item.data());
       });
-      const sortList = list.sort((a,b) => {a.createdAt - b.createdAt})
-      setChatList(sortList);
+      // const sortList = list.sort((a,b) => {a.createdAt - b.createdAt})
+      setChatList(list);
     });
   }, []);
   async function getName() {
@@ -67,7 +71,7 @@ function Messages() {
               <div
                 className="icon text-3xl w-max h-max rounded-full p-[7px] hover:bg-violet-400"
                 onClick={() => {
-                  navigate("/Home");
+                  navigate("/chats");
                 }}
               >
                 <AiOutlineArrowLeft />
