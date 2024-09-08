@@ -4,11 +4,13 @@ import * as ReactDOM from "react-dom/client";
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import { createBrowserRouter , RouterProvider } from 'react-router-dom';
-import Home from "./Components/Home"
+// import Home from "./Components/Home"
 import Loading from './Components/Loading';
 import Error from './Components/Error';
 import Messages from './Components/Messages';
 import Chats from './Components/Chats.jsx';
+import Marketplace from './Components/Marketplace.jsx';
+import Location from './Components/Location.jsx';
 
 
 function App() {
@@ -21,10 +23,10 @@ function App() {
       path: "*",
       element: <Error/>,
     },
-    {
-      path: "/Home",
-      element: <Home/>,
-    },
+    // {
+    //   path: "/Home",
+    //   element: <Home/>,
+    // },
     {
       path: "/Login",
       element: <Login/>,
@@ -40,6 +42,14 @@ function App() {
     {
       path: "/Messages",
       element: <Messages/>,
+    },
+    {
+      path: "/Marketplace",
+      element: <Marketplace/>,
+    },
+    {
+      path: "/Location",
+      element: <Location/>,
     },
   ]);
   // const [count, setCount] = useState(0)

@@ -20,11 +20,9 @@ function Messages() {
   let name_1  = param.state.name.slice(0,1).toUpperCase()
   let full  = name_1 + param.state.name.slice(1).toLowerCase()
   
-  
-  
   const [admin, setAdmin1] = useState("");
 
-  useEffect(() => {
+  useEffect(() => { 
     document.querySelector("title").innerHTML = "𝗖𝗵𝗮𝘁𝘀𝗔𝗽𝗽 |  𝗖𝗵𝗮𝘁 𝗪𝗶𝘁𝗵" + " " + full
     getName();
     const q = query(
@@ -37,8 +35,8 @@ function Messages() {
       docSnap.forEach((item) => {
         list.push(item.data());
       });
-      // const sortList = list.sort((a,b) => {a.createdAt - b.createdAt})
-      setChatList(list);
+      const sortList = list.sort((a,b) => {a.createdAt - b.createdAt})
+      setChatList(sortList);
     });
   }, []);
   async function getName() {
@@ -60,14 +58,16 @@ function Messages() {
       createdAt : Date.now(),
     });
     setMessage("");
+    const chattingSection = document.querySelector(".chatting");
+    chattingSection.scrollTop = chattingSection.scrollHeight;
   };
 
   return (
     <>
       <div className="contanier bg-gray-200 w-screen h-screen overflow-hidden">
         <div className="chatSection overflow-hidden">
-          <nav className="chatHead h-[10vh] w-screen flex px-5 justify-between gap-3 items-center bg-violet-600">
-            <div className="left_sideItems flex gap-3 items-center">
+          <nav className="chatHead h-[10vh] w-screen flex px-5 justify-between items-center bg-violet-600">
+            <div className="left_sideItems flex gap-3 items-center me-10">
               <div
                 className="icon text-3xl w-max h-max rounded-full p-[7px] hover:bg-violet-400"
                 onClick={() => {
@@ -95,10 +95,10 @@ function Messages() {
               </div>
             </div>
           </nav>
-          <div className="chatting h-[75vh] mb-1 ps-5 pe-2">
+          <div className="chatting h-[75vh] mb-1 ps-5 pe-2 overflow-y-auto ">
             {chatList.map((item , index) => (
               <div key={index} onClick={()=> navigate("/Chat" , {state : {...item , myUid}})} className={`flex ${item.senderUid != param.state.myUid ? "justify-start" : "justify-end"}`}>
-                <div className="bg-indigo-50 border border-black shadow-md shadow-purple-400 rounded-md mt-3 h-max py-2 px-3 max-w-[50%] w-max">
+                <div className="bg-indigo-50 border border-black shadow-md shadow-purple-400 rounded-md my-3 h-max py-2 px-3 max-w-[50%] w-max">
                 <h1 className="font-semibold text-[21px]">{item.messages}</h1>
                 <h1 className="text-gray-700 text-[13px]">{moment(item.createdAt).startOf('seconds').fromNow()}</h1>
                 </div>

@@ -12,7 +12,7 @@ function Loading() {
         if(local === null){
             navigate("/Login")
         }else{
-          navigate("/Home")
+          navigate("/Chats")
         }
     })
 
