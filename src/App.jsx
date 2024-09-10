@@ -9,7 +9,6 @@ import Loading from './Components/Loading';
 import Error from './Components/Error';
 import Messages from './Components/Messages';
 import Chats from './Components/Chats.jsx';
-import Marketplace from './Components/Marketplace.jsx';
 import Location from './Components/Location.jsx';
 
 
@@ -42,10 +41,6 @@ function App() {
     {
       path: "/Messages",
       element: <Messages/>,
-    },
-    {
-      path: "/Marketplace",
-      element: <Marketplace/>,
     },
     {
       path: "/Location",

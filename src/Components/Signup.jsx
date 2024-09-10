@@ -24,7 +24,7 @@ function Signup() {
       setPosition({ lat: latitude, lng: longitude });
     });
     document.querySelector("title").innerHTML = "𝗖𝗵𝗮𝘁𝘀𝗔𝗽𝗽 | 𝗦𝗶𝗴𝗻𝗨𝗽";
-  } ,[position]);
+  }, [position]);
   async function handleSignup(e) {
     e.preventDefault();
     setloading(true);
@@ -108,8 +108,8 @@ function Signup() {
             name,
             email,
             uid,
-            positionA : position.lat ,
-            positionB : position.lng ,
+            positionA: position.lat,
+            positionB: position.lng,
             createdAt: new Date().toDateString(),
             loginAt: new Date().toDateString(),
           };

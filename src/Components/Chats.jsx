@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import { AiOutlineLogout } from "react-icons/ai";
+import Logout from "./Logout";
 
 function UsersID() {
   const navigate = useNavigate();
@@ -81,9 +82,7 @@ function UsersID() {
               </button>
             </div>
             <div className="item3">
-              <button type="button" title="Logout" className="ms-3 text-4xl p-1 hover:bg-indigo-200 rounded-full active:bg-slate-400">
-              <AiOutlineLogout />
-              </button>
+              <Logout />
             </div>
           </div>
           <div
@@ -116,14 +115,14 @@ function UsersID() {
                   Location
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   to="/Marketplace"
                   className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Marketplace
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -164,9 +163,7 @@ function UsersID() {
               </button>
             </div>
             <div className="item3">
-              <button type="button" title="Logout" className="ms-3 text-4xl p-1 hover:bg-indigo-200 rounded-full active:bg-slate-400">
-              <AiOutlineLogout />
-              </button>
+            <Logout />
             </div>
           </div>
           <div
@@ -199,14 +196,14 @@ function UsersID() {
                   Location
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   to="/Marketplace"
                   className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Marketplace
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
