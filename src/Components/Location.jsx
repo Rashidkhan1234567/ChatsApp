@@ -3,6 +3,7 @@ import PFP from "../assets/profile.jpeg";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { auth, db, collection, getDocs } from "../Firebase/firebase.config";
 import { Link } from "react-router-dom";
+import { AiOutlineLogout } from "react-icons/ai";
 
 
 const mapContainerStyle = {
@@ -45,6 +46,7 @@ function Location() {
     }
   };
   useEffect(() => {
+    document.querySelector("title").innerHTML = "𝗖𝗵𝗮𝘁𝘀𝗔𝗽𝗽 |  𝗟𝗼𝗰𝗮𝘁𝗶𝗼𝗻";
     handleLocationClick()
     getName();
   }, []);
@@ -63,7 +65,7 @@ function Location() {
       <nav className="bg-white border-gray-200 dark:bg-indigo-900">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white capitalize">
-            {admin == "" ? <div className="loader1"></div> : <p>{admin}</p>}
+            {admin == "" ? <div className="loader1"></div> : <p className="w-40 text-4xl">{admin}</p>}
           </span>
 
           <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -88,6 +90,11 @@ function Location() {
                   src={PFP}
                   alt="user photo"
                 />
+              </button>
+            </div>
+            <div className="item3">
+              <button type="button" title="Logout" className="ms-3 text-4xl p-1 hover:bg-indigo-200 rounded-full active:bg-slate-400">
+              <AiOutlineLogout />
               </button>
             </div>
           </div>
