@@ -4,6 +4,7 @@ import "../Style/Loading.css";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import { AiOutlineLogout } from "react-icons/ai";
 
 function UsersID() {
   const navigate = useNavigate();
@@ -15,20 +16,18 @@ function UsersID() {
   useEffect(() => {
     document.querySelector("title").innerHTML = "𝗖𝗵𝗮𝘁𝘀𝗔𝗽𝗽 |  𝗖𝗵𝗮𝘁";
     getUser();
-    getName()
+    getName();
   }, []);
 
-
-
-async function getName(){
+  async function getName() {
     const data = await getDocs(collection(db, "Users"));
-  const Admin = auth.currentUser;
+    const Admin = auth.currentUser;
     data.forEach((item) => {
-      if(item.data().uid== Admin.uid){
-       setAdmin1(item.data().name)
+      if (item.data().uid == Admin.uid) {
+        setAdmin1(item.data().name);
       }
-    })
-}
+    });
+  }
 
   const getUser = async () => {
     setCon(true);
@@ -81,6 +80,11 @@ async function getName(){
                 />
               </button>
             </div>
+            <div className="item3">
+              <button type="button" className="w-16 h-7 bg-orange-700">
+              <AiOutlineLogout />
+              </button>
+            </div>
           </div>
           <div
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
@@ -131,11 +135,9 @@ async function getName(){
     <div className="body w-screen h-screen overflow-x-hidden bg-gray-200">
       <nav className="bg-white border-gray-200 dark:bg-indigo-900">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white capitalize">
-          {
-            admin == "" ? (<div className="loader1"></div>) : (<p>{admin}</p>) 
-          }
-        </span>
+          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white capitalize">
+            {admin == "" ? <div className="loader1"></div> : <p>{admin}</p>}
+          </span>
 
           <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <div className="item1">
@@ -159,6 +161,11 @@ async function getName(){
                   src={PFP}
                   alt="user photo"
                 />
+              </button>
+            </div>
+            <div className="item3">
+              <button type="button" title="Logout" className="ms-3 text-4xl p-1 hover:bg-indigo-200 rounded-full active:bg-slate-400">
+              <AiOutlineLogout />
               </button>
             </div>
           </div>

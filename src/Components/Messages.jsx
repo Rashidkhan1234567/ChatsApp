@@ -11,7 +11,6 @@ import {
 import "../Style/Loading.css";
 import { addDoc, onSnapshot, query, where } from "firebase/firestore";
 import moment from "moment/moment";
-
 function Messages() {
   const navigate = useNavigate();
   const [messages, setMessage] = useState([]);
@@ -98,10 +97,40 @@ function Messages() {
           <div className="chatting h-[75vh] mb-1 ps-5 pe-2 overflow-y-auto ">
             {chatList.map((item , index) => (
               <div key={index} onClick={()=> navigate("/Chat" , {state : {...item , myUid}})} className={`flex ${item.senderUid != param.state.myUid ? "justify-start" : "justify-end"}`}>
+            {item.senderUid != param.state.myUid ? 
+            (
+              
+<div className="flex items-start gap-2.5 my-2 ">
+   <img className="w-8 h-8 rounded-full border-2 border-black shadow shadow-gray-700" src={PFP} alt="Jese image" />
+   <div className="flex flex-col w-full max-w-[320px] leading-1.5 p-3 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-indigo-700">
+      <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white">{item.messages}</p>
+      <div className="flex justify-between items-center space-x-2 rtl:space-x-reverse">
+      <span className="text-sm font-normal text-gray-500 dark:text-gray-400">Delivered</span>
+         <span className="text-sm font-normal text-gray-500 dark:text-gray-400">{moment(item.createdAt).startOf('seconds').fromNow()}</span>
+      </div>
+   </div>
+   </div>
+            )
+             :
+             (
+              
+<div className="flex items-start gap-2.5 my-2 ">
+   <div className="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-s-xl rounded-b-xl dark:bg-indigo-700">
+      <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white">{item.messages}</p>
+      <div className="flex justify-between items-center space-x-2 rtl:space-x-reverse">
+         <span className="text-sm font-normal text-gray-500 dark:text-gray-400">{moment(item.createdAt).startOf('seconds').fromNow()}</span>
+      <span className="text-sm font-normal text-gray-500 dark:text-gray-400">Delivered</span>
+      </div>
+   </div>
+   <img className="w-8 h-8 rounded-full border-2 shadow shadow-gray-700 border-black" src={PFP} alt="Jese image" />
+</div>
+             )}
+             
+{/* 
                 <div className="bg-indigo-50 border border-black shadow-md shadow-purple-400 rounded-md my-3 h-max py-2 px-3 max-w-[50%] w-max">
-                <h1 className="font-semibold text-[21px]">{item.messages}</h1>
-                <h1 className="text-gray-700 text-[13px]">{moment(item.createdAt).startOf('seconds').fromNow()}</h1>
-                </div>
+                <h1 className="font-semibold text-[21px]"></h1>
+                <h1 className="text-gray-700 text-[13px]"></h1>
+                </div> */}
               </div>
             ))
 

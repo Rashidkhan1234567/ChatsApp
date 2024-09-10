@@ -1,13 +1,13 @@
 import "../Style/Login.css";
 import Swal from "sweetalert2";
-import { react, useState , useEffect } from "react";
+import { react, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import img from "../assets/images-removebg-preview.png";
 import {
   auth,
   db,
   doc,
-   setDoc,
+  setDoc,
   createUserWithEmailAndPassword,
 } from "../Firebase/firebase.config";
 
@@ -17,9 +17,14 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setloading] = useState(false);
-  useEffect(()=>{
-    document.querySelector("title").innerHTML = "𝗖𝗵𝗮𝘁𝘀𝗔𝗽𝗽 | 𝗦𝗶𝗴𝗻𝗨𝗽"
-  })
+  const [position, setPosition] = useState(null);
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const { latitude, longitude } = pos.coords;
+      setPosition({ lat: latitude, lng: longitude });
+    });
+    document.querySelector("title").innerHTML = "𝗖𝗵𝗮𝘁𝘀𝗔𝗽𝗽 | 𝗦𝗶𝗴𝗻𝗨𝗽";
+  } ,[position]);
   async function handleSignup(e) {
     e.preventDefault();
     setloading(true);
@@ -69,7 +74,6 @@ function Signup() {
       setloading(false);
       return;
     } else if (password.trim() === "") {
-     
       Swal.fire({
         icon: "error",
         title: "Password reqiured!",
@@ -79,7 +83,6 @@ function Signup() {
       setloading(false);
       return;
     } else if (password.includes(" ")) {
-     
       Swal.fire({
         icon: "error",
         title: "Password should not contain spaces!",
@@ -89,7 +92,6 @@ function Signup() {
       setloading(false);
       return;
     } else if (password.trim().length < 6) {
-     
       Swal.fire({
         icon: "error",
         title: "Please enter at least 6 characters for the password!",
@@ -100,17 +102,19 @@ function Signup() {
       return;
     } else {
       await createUserWithEmailAndPassword(auth, email, password)
-        .then(async(response) => {
+        .then(async (response) => {
           const uid = response.user.uid;
           const userData = {
             name,
             email,
             uid,
+            positionA : position.lat ,
+            positionB : position.lng ,
             createdAt: new Date().toDateString(),
             loginAt: new Date().toDateString(),
-          }
-        await setDoc(doc(db,"Users",uid), userData);
-          localStorage.setItem("UID" , uid)
+          };
+          await setDoc(doc(db, "Users", uid), userData);
+          localStorage.setItem("UID", uid);
           Swal.fire({
             position: "top-center",
             icon: "success",
@@ -125,7 +129,6 @@ function Signup() {
         .catch((error) => {
           switch (error.code) {
             case "auth/invalid-email":
-      
               Swal.fire({
                 icon: "error",
                 title: "Email is invalid!",
@@ -137,7 +140,6 @@ function Signup() {
               break;
 
             case "auth/invalid-password":
-             
               Swal.fire({
                 icon: "error",
                 title: "Password is invalid!",
@@ -148,7 +150,6 @@ function Signup() {
               });
               break;
             case "auth/weak-password":
-             
               Swal.fire({
                 icon: "error",
                 title: "Password is weak!",

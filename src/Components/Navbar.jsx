@@ -4,6 +4,7 @@ import PFP from "../assets/profile.jpeg";
 
 import { auth ,db,collection ,getDocs } from "../Firebase/firebase.config";
 import { Link } from "react-router-dom";
+import { AiOutlineLogout } from "react-icons/ai";
 function Navbar() {
   const [admin, setAdmin1] = useState("");
 
@@ -51,6 +52,7 @@ async function getName(){
             />
           </button>
             </div>
+            
         </div>
         <div
           className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
